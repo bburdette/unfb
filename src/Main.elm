@@ -47,6 +47,13 @@ extractSearchArgument key location =
         |> Maybe.withDefault Nothing
 
 
+docview : Model -> Browser.Document Msg
+docview model =
+    { title = "unfb"
+    , body = [ view model ]
+    }
+
+
 view : Model -> Html Msg
 view model =
     E.layout [] <|
@@ -88,9 +95,9 @@ view model =
 
 main : Program Flags Model Msg
 main =
-    Browser.element
+    Browser.document
         { init = init
-        , view = view
+        , view = docview
         , update = update
         , subscriptions = \_ -> Sub.none
         }
